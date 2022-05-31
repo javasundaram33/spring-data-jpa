@@ -68,4 +68,13 @@ class StudentRepositoryTest {
         List<Student> s = studentRepository.findByLast_NameOrderByFirst_NameAsc(lastName);
         System.out.println(s);
     }
+
+
+    @Test
+    public void findByFirstNameAndLastName(){
+        String lastName ="palani";
+        String firstName = "mohanasundaram";
+        Student s = studentRepository.findByFirstNameAndLastName(firstName, lastName);
+        System.out.println(s);
+    }
 }
