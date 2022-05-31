@@ -2,10 +2,12 @@ package com.javasundaram.spring.data.jpa.repository;
 
 import com.javasundaram.spring.data.jpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,4 +30,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query("select s from Student s where last_name=?1")
     List<Student> findByLast_NameOrderByFirst_NameAsc(String lastName);
+
+    @Modifying
+    @Transactional
+    @Query(
+            value="update tbl_student set first_name= ?1 where email = ?2",
+            nativeQuery = true
+    )
+    int updateFirstNameByEmail(String firstName, String email);
 }

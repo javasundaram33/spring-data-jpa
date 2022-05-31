@@ -77,4 +77,12 @@ class StudentRepositoryTest {
         Student s = studentRepository.findByFirstNameAndLastName(firstName, lastName);
         System.out.println(s);
     }
+
+    @Test
+    public void updateFirstNameByEmail(){
+        String email ="sundarammohan28@gmail.com";
+        String firstName = "mohanasundaram";
+        int s = studentRepository.updateFirstNameByEmail(firstName, email);
+        System.out.println(s);
+    }
 }
