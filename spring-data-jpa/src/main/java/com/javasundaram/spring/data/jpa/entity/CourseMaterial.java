@@ -1,9 +1,6 @@
 package com.javasundaram.spring.data.jpa.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "course")
 public class CourseMaterial {
 
     @Id
@@ -28,7 +26,10 @@ public class CourseMaterial {
 
     private String url;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(
             name = "course_id",
             referencedColumnName = "courseId"
