@@ -29,4 +29,7 @@ public class Course {
     private String courseName;
 
     private Integer credit;
+
+    @OneToOne(mappedBy = "course")
+    private CourseMaterial courseMaterial;
 }
